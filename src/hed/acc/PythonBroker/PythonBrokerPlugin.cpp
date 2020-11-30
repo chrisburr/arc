@@ -294,7 +294,9 @@ namespace Arc {
     // Finish the Python Interpreter
     if (refcount == 0) {
       PyEval_AcquireThread(tstate);
+#ifdef HAVE_PYTHON_INITIALIZE_EX
       Py_Finalize();
+#endif
     }
 
     lock.unlock();
